@@ -1,43 +1,64 @@
-@extends('page')
-
-@section('title', 'Homepage') 
+@extends('layouts.app')
 
 @section('content')
-<h3>post a message:</h3>
-	<form action="/create" method="post">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
-		<input type="text" name="title" placeholder="Title"> 
+                <div class="card-body">
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
 
-		<br>
+                    </div>
+                    @endif
 
-		<input type="text" name="content" placeholder="content">
+                    {{ __('You are logged in!') }}
+                    
+                    <h3>post a message:</h3>
+                    <form action="/create" method="post">
 
-		{{ csrf_field() }}
+                        <input type="text" name="title" placeholder="Title"> 
 
-		<button type="submit">Submit</button>
+                        <br>
 
-	</form>
-		<br>
+                        <input type="text" name="content" placeholder="content">
 
-	<h3>Recent Messages:</h3>
+                        {{ csrf_field() }}
+
+                        <button type="submit">Submit</button>
+                        <input type="hidden" value="{{ Session::token() }}" name="_token">
+
+                    </form>
+                    <br>
+
+                    <h3>Recent Messages:</h3>
 
 
-	<ul>
-		@foreach($messages as $message)
+                    <ul>
+                        @foreach($messages as $message)
 
-		<li>
-			{{ $message->title }}
-			 <br> 
-			{{ $message -> content }}
-			<br>
-			{{ $message->created_at->diffForHumans() }} 
-		</li>
+                        <li>
+                            {{ $message->title }}
+                            <br> 
+                             user: {{ $message -> user_id }}
+                            <br>
+                            {{ $message -> content }}
+                            <br>
+                            {{ $message->created_at->diffForHumans() }} 
+                        </li>
 
-		<a href="/message/{{ $message->id }}"> view tweet </a>
-		<br>
-		<br>
-		@endforeach
+                        <a href="/message/{{ $message->id }}"> view tweet </a>
+                        <br>
+                        <br>
+                        @endforeach
 
-	</ul>
-
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

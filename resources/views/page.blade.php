@@ -12,7 +12,7 @@
 <body>
 
 
-@yield('content')
+@yield('posts')
 
 
 </body>

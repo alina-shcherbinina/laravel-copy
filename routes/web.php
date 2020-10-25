@@ -13,12 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HController;
 use App\Http\Controllers\MessageController;
 
-Route::get('/', [ HomeController::class, 'index' ]);
+Route::get('/posts', [ HController::class, 'dash' ]);
 
 Route::post('/create', [ MessageController::class, 'create' ]);
 
 
 Route::get('/message/{id}', [ MessageController::class, 'view' ]);
+
+Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

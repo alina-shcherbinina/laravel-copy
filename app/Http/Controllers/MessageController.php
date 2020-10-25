@@ -15,9 +15,9 @@ class MessageController extends Controller
     	$message -> title = $request -> title;
     	$message -> content = $request -> content;
 
-    	$message -> save();
+    	$request-> user()->posts() -> save($message);
 
-    	return redirect('/');
+    	return redirect('');
     } 
 
     public function view($id){
