@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @extends('page')
 @section('content')
 <div class="container">
@@ -15,59 +16,58 @@
                     </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
-
-                    <a href="{{ url('/logout') }}"> <button>logout</button> </a>
+                    <p>{{ __('You are logged in!') }}</p>
                     
-                    <h3>post a message:</h3>@if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+                    <h6>post a message:</h6>
 
                     <form action="/create" method="post">
+                        <div class="form-group">
 
-                        <input type="text" name="title" placeholder="Title"> 
+                            <input type="text" name="title"  class="form-control" placeholder="Title">
+                        </div>
 
-                        <br>
-
-                        <input type="text" name="content" placeholder="content">
+                        <input type="text" name="content"  class="form-control" placeholder="content">
 
                         {{ csrf_field() }}
 
-                        <button type="submit">Submit</button>
-                        <input type="hidden" value="{{ Session::token() }}" name="_token">
+                        <div class="form-group">
+                            <input type="hidden" value="{{ Session::token() }}" name="_token">
+                        </div>
+                        <button class="btn btn-outline-primary" type="submit">twet</button>
+                    </form> 
 
-                    </form>
                     <br>
+
+                    @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger">
+                        {{ $error }}
+                    </div> 
+                    @endforeach
+                    @endif
+
+
                     @if(session()->has('message'))
                     <div class="alert alert-success">{{session()->get('message')}}</div>
                     @endif
-                    <h3>Recent Messages:</h3>
 
-                    <ul>
-                        @foreach($messages as $message)
+                    <h5>Recent Messages:</h5>
 
-                        <li>
-                            {{ $message->title }}
-                            <br> 
-                            user: {{ $message -> user-> name}}
-                            <br>
-                            {{ $message -> content }}
-                            <br>
-                            {{ $message->created_at->diffForHumans() }} 
-                        </li>
+                        <div style="width: 18rem;">  
+                        @foreach($messages->reverse()  as $message)
+                        <div class=" card card-body">
+                       
+                            <h5 class="card-title"> {{ $message->title }} </h5>
+                            <h6 class="card-subtitle mb-2 text-muted"> {{ $message -> user-> name}} </h6>
+                            <p class="card-text"> {{ $message -> content }} </p>
+                            <p class="card-text text-muted">  {{ $message->created_at->diffForHumans() }} </p>
 
-                        <a href="/message/{{ $message->id }}"> view tweet </a>
-                        <br>
+                        <a href="/message/{{ $message->id }}" class="card-link"> view tweet </a>
+                        </div>
                         <br>
                         @endforeach
-
-                    </ul>
+                        
+                       </div>
                 </div>
             </div>
         </div>
