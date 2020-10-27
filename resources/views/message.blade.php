@@ -1,13 +1,14 @@
 @extends('page')
 
-@section('title', $message->title) 
+ @section('title', $message->title) 
 
-@section('posts')
-<h3>{{ $message->title }}</h3>
-<p>{{ $message -> user_id}}</p>
+ @section('tweet') 
+{{ $message->title }}
+<p>{{ $message -> user ->name }}</p>
 <h4>{{ $message->content }}</h4>
 <p>{{ $message->created_at->diffForHumans() }}</p>
 
-<a href="/"><button>return home</button></a>
+<a  class="btn btn-primary" href="/">return home</a>
 
 @endsection
+

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@extends('page')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -16,8 +16,19 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    <a href="{{ url('/logout') }}"> <button>logout</button> </a>
                     
-                    <h3>post a message:</h3>
+                    <h3>post a message:</h3>@if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
                     <form action="/create" method="post">
 
                         <input type="text" name="title" placeholder="Title"> 
@@ -33,9 +44,10 @@
 
                     </form>
                     <br>
-
+                    @if(session()->has('message'))
+                    <div class="alert alert-success">{{session()->get('message')}}</div>
+                    @endif
                     <h3>Recent Messages:</h3>
-
 
                     <ul>
                         @foreach($messages as $message)
@@ -43,7 +55,7 @@
                         <li>
                             {{ $message->title }}
                             <br> 
-                             user: {{ $message -> user_id }}
+                            user: {{ $message -> user-> name}}
                             <br>
                             {{ $message -> content }}
                             <br>
