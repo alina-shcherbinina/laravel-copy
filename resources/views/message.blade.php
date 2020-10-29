@@ -21,7 +21,7 @@
 				</div>
 			</div>
 			<br>
-			<a  class="btn btn-primary float-right" href="/">return home</a>
+			<a  class="btn btn-primary float-right" href="{{ url('/') }}">return home</a>
 		</div>
 
 	</div>

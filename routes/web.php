@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HController;
 use App\Http\Controllers\MessageController;
-
+use App\Events\SendTweet;
 
 Route::post('/create', [ MessageController::class, 'create' ]);
 
