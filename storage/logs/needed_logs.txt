@@ -1,0 +1,6 @@
+[2020-11-03 01:35:39] local.INFO: email {"name":"will","email":"will1@gmail.com","body":"Thank ypu for joining Twittor! i jope you will enjoy the loneliness!!"} 
+[2020-11-03 01:38:02] local.INFO: email {"name":"will2","email":"will2@gmail.com","body":"Thank ypu for joining Twittor! i jope you will enjoy the loneliness!!"} 
+[2020-11-03 01:41:22] local.INFO: email {"name":"will3","email":"will3@e.com","body":"Thank you for joining Twittor! i hope you will enjoy the loneliness!!"} 
+[2020-11-03 01:42:15] local.INFO: email {"name":"will4","email":"will4@e.com","body":"Thank you for joining Twittor! i hope you will enjoy the loneliness!!"} 
+[2020-11-03 01:43:45] local.INFO: email {"name":"will5","email":"will5@gmail.com","body":"Thank you for joining Twittor! i hope you will enjoy the loneliness!!"} 
+[2020-11-03 01:47:23] local.INFO: email {"name":"will6","email":"will6@gmail.com","body":"Thank you for joining Twittor! i hope you will enjoy the loneliness!!"} 
